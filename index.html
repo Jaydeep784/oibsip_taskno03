@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+</head>
+<body>
+    
+    <header>
+        <h1>To do List App</h1>
+    </header>
+
+    <div id="newTask">
+        <input type="text" class="title" placeholder="Title">
+    </div>
+    <div id="push">ADD</div>
+
+    <div class="tasks">
+        <div class="pendingTask">
+            <h1>Pending Task</h1>
+
+            <div id="pendTask">
+
+            </div>
+
+        </div>
+
+    </div>
+    
+    
+    <script>
+        
+        // alert(today)    
+
+        document.querySelector('#push').onclick = function(){
+            var today = new Date();
+            today = today.getHours() + ":" + today.getMinutes();
+            if(document.querySelector('#newTask input').value.length == 0){
+                alert("Please Enter a Task")
+            }
+            else{
+                document.querySelector('#pendTask').innerHTML += `
+                <div class="task">
+                <span id="taskName">
+                ${document.querySelector('#newTask input').value}
+                </span>
+                
+
+                <button class="delete">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                </div>
+                `
+                
+
+                // document.querySelector('#time').innerHTML += today
+                // document.querySelector('#time').innerHTML = ""
+
+                document.querySelector('#newTask input').value = ""
+
+                var deleteBtn = document.querySelectorAll('.delete');
+                for(var i=0; i<deleteBtn.length; i++){
+                    deleteBtn[i].onclick = function(){
+                        this.parentNode.remove();
+                    }
+                }
+
+                
+            }
+        }
+
+    </script>
+
+</body>
+</html>
